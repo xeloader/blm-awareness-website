@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
+import styled from 'styled-components'
+const JumboText = styled.p`
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+  line-height: 90%;
+  font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+`
 
-function App() {
+const JumboWrapper = styled.div`
+  & > ${JumboText} {
+    font-size: ${props => 100 / props.lines || 25}vh;
+  }
+`
+
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <JumboWrapper lines={3}>
+        <JumboText>black</JumboText>
+        <JumboText>lives</JumboText>
+        <JumboText>matter</JumboText>
+      </JumboWrapper>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
