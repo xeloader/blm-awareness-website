@@ -1,14 +1,20 @@
 # BLM
 
+![Preview of Website saying Black Lives Matter](docs/preview.png "Preview of website")
 
+Spread awareness of what's going on right now. Links for helping out #blm movement, hashtag links as well as more information about police violence in the US.
 
-If you have a website and want to spread awareness of what's going on right now. Links for helping out and link to the hashtag on Twitter.
+## Getting started
 
-Just download one of the releases and upload to your web server. 
+Just download one of the releases and upload contents of the zip files to your web server. The website requires **no** server side processing, it's only HTML and Javascript.
 
-OR IF YOU WANT TO MAKE CHANGES
+## Make changes
 
 Run `npm run build` and upload the contents of `/build` to your web server.
+
+## Requirements
+
+None, just upload the prebuilt website files to your web server
 
 ## PR
 
