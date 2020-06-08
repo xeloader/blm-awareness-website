@@ -41,6 +41,8 @@ const RotateWrapper = styled.div`
 const JumboWrapper = styled.div`
   & > ${JumboText} {
     font-size: ${props => 100 / props.lines || 25}vh;
+    user-select: none;
+    pointer-events: none;
     @media (orientation: portrait) {
       font-size: ${props => 100 / props.lines || 25}vw;
     }
@@ -50,6 +52,9 @@ const JumboWrapper = styled.div`
 const Name = styled.span`
   font-size: ${props => props.fontSize}px;
   color: lightgray;
+  & a {
+    color: lightgray;
+  }
 `
 
 const BGWrapper = styled.div`
@@ -67,6 +72,18 @@ const BGWrapper = styled.div`
   justify-content: space-between;
 `
 
+const ExtLink = ({ children, ...props }) => {
+  return (
+    <a
+      {...props}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {children}
+    </a>
+  )
+}
+
 const NamesBG = (props) => {
   const chars = victims.reduce((acc, cur) => acc + cur.length, 0)
   const { innerWidth, innerHeight } = window
@@ -76,6 +93,18 @@ const NamesBG = (props) => {
       {victims.map((name) => {
         return <Name fontSize={fontSize} key={name}>{name}</Name>
       })}
+      <Name fontSize={fontSize}>
+        <ExtLink href='https://mappingpoliceviolence.org/'>and</ExtLink>
+      </Name>
+      <Name fontSize={fontSize}>
+        <ExtLink href='https://twitter.com/samswey/status/1259254114606886913'>countless</ExtLink>
+      </Name>
+      <Name fontSize={fontSize}>
+        <ExtLink href='https://apps.npr.org/documents/document.html?id=6933593-NPR-CodeSwitch-Saytheirnameslistv3'>more</ExtLink>
+      </Name>
+      <Name fontSize={fontSize}>
+        <ExtLink href='https://ebwiki.org/'>lives</ExtLink>
+      </Name>
     </BGWrapper>
   )
 }
