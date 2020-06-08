@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import victims from './victims.json'
 const JumboText = styled.p`
   text-transform: uppercase;
   text-align: left;
@@ -26,6 +27,12 @@ const A = styled.a`
 `
 
 const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const RotateWrapper = styled.div`
+  z-index: 1;
   @media (orientation: portrait) {
     transform: rotate(90deg) translateX(2vh);
   }
@@ -40,28 +47,63 @@ const JumboWrapper = styled.div`
   }
   
 `
+const Name = styled.span`
+  font-size: ${props => props.fontSize}px;
+  color: lightgray;
+`
+
+const BGWrapper = styled.div`
+  font-family: monospace;
+  z-index: 0;
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 0; left:0; right:0;bottom: 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+`
+
+const NamesBG = (props) => {
+  const chars = victims.reduce((acc, cur) => acc + cur.length, 0)
+  const { innerWidth, innerHeight } = window
+  const fontSize = Math.sqrt((innerWidth * innerHeight) / chars)
+  return (
+    <BGWrapper>
+      {victims.map((name) => {
+        return <Name fontSize={fontSize} key={name}>{name}</Name>
+      })}
+    </BGWrapper>
+  )
+}
 
 function App () {
   return (
     <AppWrapper>
-      <JumboWrapper lines={3}>
-        <JumboText>black</JumboText>
-        <JumboText>lives</JumboText>
-        <JumboText>matter</JumboText>
-      </JumboWrapper>
-      <HashA
-        target='_blank'
-        rel='noopener noreferrer'
-        href='https://twitter.com/hashtag/BlackLivesMatter'
-      >#BlackLivesMatter
-      </HashA>
-      <A
-        target='_blank'
-        rel='noopener noreferrer'
-        href='https://blacklivesmatters.carrd.co/'
-      >
+      <NamesBG />
+      <RotateWrapper>
+        <JumboWrapper lines={3}>
+          <JumboText>black</JumboText>
+          <JumboText>lives</JumboText>
+          <JumboText>matter</JumboText>
+        </JumboWrapper>
+        <HashA
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://twitter.com/hashtag/BlackLivesMatter'
+        >#BlackLivesMatter
+        </HashA>
+        <A
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://blacklivesmatters.carrd.co/'
+        >
         how to help
-      </A>
+        </A>
+      </RotateWrapper>
     </AppWrapper>
   )
 }
